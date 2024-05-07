@@ -46,16 +46,14 @@ is_hidden = 0
 [SeoCollector]
 ==
 {% put meta %}
-    {# The model and category variables will be available to you in the template #}
-    {% component 'SeoCollector' model=post params={category: category} %}
+{# The model and category variables will be available to you in the template #}
+{% component 'SeoCollector' model=post params={category: category} %}
 {% endput %}
 
 <h1>{{ SeoCollector.getTitle() | raw }}</h1>
 
 <div>{{ post.content }}</div>
 ```
-You can also pass additional parameters:
-
 ---
 
 ### 3. Use in your own plugins
@@ -94,7 +92,7 @@ This behavior will add the polymorphic relationship meta_template and the getMet
 
 Method used only in trees to get the closest meta pattern up the tree:
 ```php
-$metaTemplate = $yorModel->getMetaTemplateFromTree();
+$metaTemplate = $category->getMetaTemplateFromTree();
 ```
 **2. Add fields to your controllers**
 
@@ -262,3 +260,25 @@ tabs:
                         language: twig
 ```
 The most important thing is that it is a nested form.
+
+### 2. Component SeoCollector
+
+| Property | Description |
+|----------|----------|
+| meta   | Current meta data   |
+| metaTemplate   | Current meta template   |
+| model   |  Current model  |
+| params   | An array with additional parameters   |
+
+
+| Method | Description |
+|----------|----------|
+| getTitle()   | Renders the meta template data from the h1 title field   |
+| getMetaTitle()   | Renders the meta template data from the meta title field   |
+| getMetaDescription()   |  Renders the meta template data from the meta description field |
+| getMetaOther()   | Renders meta template data from a field with additional meta parameters   |
+| twigRender($content = '', $data = []) | Renders the content with the parameters passed to the component with the possibility of passing additional parameters. |
+| getHeadBegin()   | Renders the content for the opening tag <head>   |
+| getHeadEnd()   | Renders the content for the closing tag </head>  |
+| getBodyBegin()   | Renders the content for the opening tag <body>  |
+| getBodyEnd()   | Renders the content for the closing tag </body>  |
