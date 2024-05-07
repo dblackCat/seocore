@@ -1,0 +1,49 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: catdesign.seocore::lang.models.meta_page.fields.name.label
+        type: text
+        placeholder: catdesign.seocore::lang.models.meta_page.fields.name.placeholder
+        span: left
+    page_id:
+        label: catdesign.seocore::lang.models.meta_page.fields.page_id.label
+        span: right
+        type: dropdown
+        options: getPageOptionList
+tabs:
+    fields:
+        h1_title:
+            label: catdesign.seocore::lang.models.meta_page.fields.h1_title.label
+            span: full
+            type: codeeditor
+            language: twig
+            size: small
+            comment: catdesign.seocore::lang.models.meta_page.fields.h1_title.comment
+            tab: 'Настройки'
+        meta_title:
+            label: catdesign.seocore::lang.models.meta_page.fields.meta_title.label
+            span: full
+            size: small
+            type: codeeditor
+            language: twig
+            comment: catdesign.seocore::lang.models.meta_page.fields.meta_title.comment
+            tab: 'Настройки'
+        meta_description:
+            label: catdesign.seocore::lang.models.meta_page.fields.meta_description.label
+            span: full
+            type: codeeditor
+            comment: catdesign.seocore::lang.models.meta_page.fields.meta_description.comment
+            size: small
+            language: twig
+            tab: 'Настройки'
+        meta_other:
+            label: catdesign.seocore::lang.models.meta_page.fields.meta_other.label
+            span: full
+            type: codeeditor
+            size: large
+            comment: catdesign.seocore::lang.models.meta_page.fields.meta_other.comment
+            language: twig
+            tab: 'Настройки'

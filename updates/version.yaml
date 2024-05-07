@@ -1,0 +1,5 @@
+v1.0.0:
+    - First version of SeoCore
+    - create_meta_pages_table.php
+    - create_meta_contents_table.php
+    - create_meta_templates_table.php

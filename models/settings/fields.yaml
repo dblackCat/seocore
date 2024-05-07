@@ -1,0 +1,49 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title_prefix:
+        label: catdesign.seocore::lang.models.settings.fields.title_prefix.label
+        comment: catdesign.seocore::lang.models.settings.fields.title_prefix.comment
+        type: text
+        placeholder: 'AppName - '
+        tab: catdesign.seocore::lang.models.settings.tabs.general
+        span: left
+    title_suffix:
+        label: catdesign.seocore::lang.models.settings.fields.title_suffix.label
+        comment: catdesign.seocore::lang.models.settings.fields.title_suffix.comment
+        type: text
+        placeholder: ' | AppName'
+        tab: catdesign.seocore::lang.models.settings.tabs.general
+        span: right
+tabs:
+    fields:
+        head_begin_code:
+            label: catdesign.seocore::lang.models.settings.fields.head_begin_code.label
+            type: codeeditor
+            span: full
+            size: small
+            language: twig
+            tab: catdesign.seocore::lang.models.settings.tabs.general
+        head_end_code:
+            label: catdesign.seocore::lang.models.settings.fields.head_end_code.label
+            type: codeeditor
+            span: full
+            size: small
+            tab: catdesign.seocore::lang.models.settings.tabs.general
+            language: twig
+        body_begin_code:
+            label: catdesign.seocore::lang.models.settings.fields.body_begin_code.label
+            type: codeeditor
+            span: full
+            size: small
+            tab: catdesign.seocore::lang.models.settings.tabs.general
+            language: twig
+        body_end_code:
+            label: catdesign.seocore::lang.models.settings.fields.body_end_code.label
+            type: codeeditor
+            span: full
+            size: small
+            tab: catdesign.seocore::lang.models.settings.tabs.general
+            language: twig

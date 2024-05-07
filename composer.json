@@ -1,0 +1,8 @@
+{
+    "name": "catdesign/seocore-plugin",
+    "type": "october-plugin",
+    "description": "Flexible generation of meta tags for pages through templates",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}

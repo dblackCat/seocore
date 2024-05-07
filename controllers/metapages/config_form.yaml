@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: catdesign.seocore::lang.models.meta_page.item_all_label
+
+# Model Form Field configuration
+form: $/catdesign/seocore/models/metapage/fields.yaml
+
+# Model Class name
+modelClass: CatDesign\SeoCore\Models\MetaPage
+
+# Default redirect location
+defaultRedirect: catdesign/seocore/metapages
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: catdesign/seocore/metapages/update/:id
+    redirectClose: catdesign/seocore/metapages
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: catdesign/seocore/metapages
+    redirectClose: catdesign/seocore/metapages
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title
