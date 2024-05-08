@@ -22,7 +22,7 @@ tabs:
             language: twig
             size: small
             comment: catdesign.seocore::lang.models.meta_page.fields.h1_title.comment
-            tab: 'Настройки'
+            tab: catdesign.seocore::lang.models.meta_page.tabs.general
         meta_title:
             label: catdesign.seocore::lang.models.meta_page.fields.meta_title.label
             span: full
@@ -30,7 +30,7 @@ tabs:
             type: codeeditor
             language: twig
             comment: catdesign.seocore::lang.models.meta_page.fields.meta_title.comment
-            tab: 'Настройки'
+            tab: catdesign.seocore::lang.models.meta_page.tabs.general
         meta_description:
             label: catdesign.seocore::lang.models.meta_page.fields.meta_description.label
             span: full
@@ -38,7 +38,7 @@ tabs:
             comment: catdesign.seocore::lang.models.meta_page.fields.meta_description.comment
             size: small
             language: twig
-            tab: 'Настройки'
+            tab: catdesign.seocore::lang.models.meta_page.tabs.general
         meta_other:
             label: catdesign.seocore::lang.models.meta_page.fields.meta_other.label
             span: full
@@ -46,4 +46,4 @@ tabs:
             size: large
             comment: catdesign.seocore::lang.models.meta_page.fields.meta_other.comment
             language: twig
-            tab: 'Настройки'
+            tab: catdesign.seocore::lang.models.meta_page.tabs.general

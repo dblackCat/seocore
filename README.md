@@ -46,17 +46,178 @@ is_hidden = 0
 [SeoCollector]
 ==
 {% put meta %}
-{# The model and category variables will be available to you in the template #}
-{% component 'SeoCollector' model=post params={category: category} %}
+    {# The model and category variables will be available to you in the template #}
+    {% component 'SeoCollector' model=post params={category: category} %}
 {% endput %}
 
 <h1>{{ SeoCollector.getTitle() | raw }}</h1>
 
 <div>{{ post.content }}</div>
 ```
----
+You can also pass additional parameters:
 
-### 3. Use in your own plugins
+---
+### 3. Use in Tailor
+
+**1. Create mixin - meta.yaml**
+
+```yaml
+uuid: catdesign-global-mixin-meta
+handle: CatDesign\Global\Mixin\Meta
+type: mixin
+name: "Meta"
+
+fields:
+    meta:
+        label: 'Meta data'
+        commentAbove: catdesign.seocore::lang.models.meta_page.fields.meta_section.comment
+        type: nestedform
+        tab: 'SEO'
+        span: left
+        form:
+            fields:
+                h1_title:
+                    label: catdesign.seocore::lang.models.meta_page.fields.h1_title.label
+                    span: full
+                    type: codeeditor
+                    language: twig
+                    size: small
+                    comment: catdesign.seocore::lang.models.meta_page.fields.h1_title.comment
+                    tab: catdesign.seocore::lang.models.meta_page.tabs.general
+                meta_title:
+                    label: catdesign.seocore::lang.models.meta_page.fields.meta_title.label
+                    span: full
+                    size: small
+                    type: codeeditor
+                    language: twig
+                    comment: catdesign.seocore::lang.models.meta_page.fields.meta_title.comment
+                    tab: catdesign.seocore::lang.models.meta_page.tabs.general
+                meta_description:
+                    label: catdesign.seocore::lang.models.meta_page.fields.meta_description.label
+                    span: full
+                    type: codeeditor
+                    comment: catdesign.seocore::lang.models.meta_page.fields.meta_description.comment
+                    size: small
+                    language: twig
+                    tab: catdesign.seocore::lang.models.meta_page.tabs.general
+                meta_other:
+                    label: catdesign.seocore::lang.models.meta_page.fields.meta_other.label
+                    span: full
+                    type: codeeditor
+                    size: large
+                    comment: catdesign.seocore::lang.models.meta_page.fields.meta_other.comment
+                    language: twig
+                    tab: catdesign.seocore::lang.models.meta_page.tabs.general
+```
+
+**2. Create mixin meta-template.yaml**
+
+```yaml
+uuid: catdesign-global-mixin-meta-template
+handle: CatDesign\Global\Mixin\MetaTemplate
+type: mixin
+name: "Meta Template"
+
+fields:
+    meta:
+        label: 'Meta template'
+        commentAbove: catdesign.seocore::lang.models.meta_page.fields.meta_section.comment
+        type: nestedform
+        tab: 'SEO'
+        span: left
+        form:
+            fields:
+                h1_title:
+                    label: catdesign.seocore::lang.models.meta_page.fields.h1_title.label
+                    span: full
+                    type: codeeditor
+                    language: twig
+                    size: small
+                    comment: catdesign.seocore::lang.models.meta_page.fields.h1_title.comment
+                    tab: catdesign.seocore::lang.models.meta_page.tabs.general
+                meta_title:
+                    label: catdesign.seocore::lang.models.meta_page.fields.meta_title.label
+                    span: full
+                    size: small
+                    type: codeeditor
+                    language: twig
+                    comment: catdesign.seocore::lang.models.meta_page.fields.meta_title.comment
+                    tab: catdesign.seocore::lang.models.meta_page.tabs.general
+                meta_description:
+                    label: catdesign.seocore::lang.models.meta_page.fields.meta_description.label
+                    span: full
+                    type: codeeditor
+                    comment: catdesign.seocore::lang.models.meta_page.fields.meta_description.comment
+                    size: small
+                    language: twig
+                    tab: catdesign.seocore::lang.models.meta_page.tabs.general
+                meta_other:
+                    label: catdesign.seocore::lang.models.meta_page.fields.meta_other.label
+                    span: full
+                    type: codeeditor
+                    size: large
+                    comment: catdesign.seocore::lang.models.meta_page.fields.meta_other.comment
+                    language: twig
+                    tab: catdesign.seocore::lang.models.meta_page.tabs.general
+```
+
+**3. Use mixin for your blueprint. Example: page.yaml**
+
+```yaml
+uuid: catdesign-global-page
+handle: CatDesign\Global\Page
+type: structure
+
+structure:
+    maxDepth: 1
+
+primaryNavigation:
+    label: Pages
+    icon: icon-file-text-o
+    order: 230
+
+
+fields:
+    content:
+        tab: Content
+        type: richeditor
+        span: full
+
+    meta:
+        type: mixin
+        source: CatDesign\Global\Mixin\Meta
+
+    meta_template:
+        type: mixin
+        source: CatDesign\Global\Mixin\MetaTemplate
+```
+
+**4. Passing data through the component**
+
+```html
+title = "Page"
+url = "/:slug"
+layout = "default"
+is_hidden = 0
+
+[section page]
+handle = "CatDesign\Global\Page"
+==
+{% put meta %}
+    {% component 'SeoCollector'
+        model=page
+        meta=page.meta
+        metaTemplate=page.parent.meta_template
+    %}
+{% endput %}
+
+<div class="container">
+    <h1>{{ SeoCollector.getTitle() | raw }}</h1>
+    {{ page.name }}
+</div>
+```
+
+### 4. Use in your own plugins
 
 **1. First, you need to add the necessary behavior to your model**
 
@@ -92,7 +253,7 @@ This behavior will add the polymorphic relationship meta_template and the getMet
 
 Method used only in trees to get the closest meta pattern up the tree:
 ```php
-$metaTemplate = $category->getMetaTemplateFromTree();
+$metaTemplate = $yorModel->getMetaTemplateFromTree();
 ```
 **2. Add fields to your controllers**
 
@@ -260,25 +421,3 @@ tabs:
                         language: twig
 ```
 The most important thing is that it is a nested form.
-
-### 2. Component SeoCollector
-
-| Property | Description |
-|----------|----------|
-| meta   | Current meta data   |
-| metaTemplate   | Current meta template   |
-| model   |  Current model  |
-| params   | An array with additional parameters   |
-
-
-| Method | Description |
-|----------|----------|
-| getTitle()   | Renders the meta template data from the h1 title field   |
-| getMetaTitle()   | Renders the meta template data from the meta title field   |
-| getMetaDescription()   |  Renders the meta template data from the meta description field |
-| getMetaOther()   | Renders meta template data from a field with additional meta parameters   |
-| twigRender($content = '', $data = []) | Renders the content with the parameters passed to the component with the possibility of passing additional parameters. |
-| getHeadBegin()   | Renders the content for the opening tag <head>   |
-| getHeadEnd()   | Renders the content for the closing tag </head>  |
-| getBodyBegin()   | Renders the content for the opening tag <body>  |
-| getBodyEnd()   | Renders the content for the closing tag </body>  |

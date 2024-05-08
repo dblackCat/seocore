@@ -3,3 +3,5 @@ v1.0.0:
     - create_meta_pages_table.php
     - create_meta_contents_table.php
     - create_meta_templates_table.php
+v1.0.1:
+    - The translations have been corrected. Added support for Tailor
