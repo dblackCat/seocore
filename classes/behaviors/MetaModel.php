@@ -35,7 +35,5 @@ class MetaModel extends ExtensionBase
             MetaContent::class,
             'name' => 'contentable',
         ];
-
-        $this->model->fillable[] = 'meta';
     }
 }

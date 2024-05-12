@@ -31,8 +31,6 @@ class MetaTemplateModel extends ExtensionBase
             MetaTemplate::class,
             'name' => 'templateable',
         ];
-
-        $this->model->fillable[] = 'meta_template';
     }
 
 
