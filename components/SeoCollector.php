@@ -84,8 +84,8 @@ class SeoCollector extends ComponentBase
     {
         $this->model           = $this->property('model');
         $this->params          = $this->property('params');
-        $this->meta            = $this->property('meta');
-        $this->metaTemplate    = $this->property('metaTemplate');
+        $this->meta            = (object) $this->property('meta');
+        $this->metaTemplate    = (object) $this->property('metaTemplate');
 
         if (!$this->meta and !$this->metaTemplate) {
             $this->meta = MetaPage::query()->forCmsPage($this->page->id)->first();

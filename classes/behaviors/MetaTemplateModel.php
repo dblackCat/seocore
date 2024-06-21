@@ -69,6 +69,6 @@ class MetaTemplateModel extends ExtensionBase
             return null;
         }
 
-        return $this->getMetaTemplateFromTree($model->parent);
+        return $this->getMetaTemplateRecursive($model->parent);
     }
 }

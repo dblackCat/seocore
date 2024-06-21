@@ -7,3 +7,6 @@ v1.0.1:
     - The translations have been corrected. Added support for Tailor
 v1.0.2:
     - BugFix. Remove fillable from behaviors
+v1.0.3:
+    - BugFix. The properties of the SeoCollector meta and meta_description components are given for the object.
+    - BugFix. Fixed an infinite loop error in the getMetaTemplateRecursive method.
