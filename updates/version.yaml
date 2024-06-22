@@ -10,3 +10,5 @@ v1.0.2:
 v1.0.3:
     - BugFix. The properties of the SeoCollector meta and meta_description components are given for the object.
     - BugFix. Fixed an infinite loop error in the getMetaTemplateRecursive method.
+v1.0.4:
+    - BugFix. Fixed template inheritance.

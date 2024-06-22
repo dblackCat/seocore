@@ -76,6 +76,17 @@ class SeoCollector extends ComponentBase
 
 
     /**
+     * OnRun
+     *
+     * @return void
+     */
+    public function init()
+    {
+        $this->meta = MetaPage::query()->forCmsPage($this->page->id)->first();
+    }
+
+
+    /**
      * Load data
      *
      * @return void
@@ -84,14 +95,47 @@ class SeoCollector extends ComponentBase
     {
         $this->model           = $this->property('model');
         $this->params          = $this->property('params');
-        $this->meta            = (object) $this->property('meta');
-        $this->metaTemplate    = (object) $this->property('metaTemplate');
+        $this->params['model'] = $this->model;
 
-        if (!$this->meta and !$this->metaTemplate) {
-            $this->meta = MetaPage::query()->forCmsPage($this->page->id)->first();
+        $meta         = (object) $this->property('meta');
+        $metaTemplate = (object) $this->property('metaTemplate');
+
+        if ($this->hasMetaObject($meta)) {
+            $this->meta = $meta;
+            return;
         }
 
-        $this->params['model'] = $this->model;
+        if ($this->hasMetaObject($metaTemplate)) {
+            $this->meta = $metaTemplate;
+        }
+    }
+
+
+    /**
+     * Has meta object
+     *
+     * @param $meta
+     * @return bool
+     */
+    private function hasMetaObject($meta)
+    {
+        if ($meta->meta_title ?? false) {
+            return true;
+        }
+
+        if ($meta->meta_description ?? false) {
+            return true;
+        }
+
+        if ($meta->h1_title ?? false) {
+            return true;
+        }
+
+        if ($meta->meta_head ?? false) {
+            return true;
+        }
+
+        return false;
     }
 
 
