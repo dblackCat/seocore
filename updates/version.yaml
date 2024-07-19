@@ -12,3 +12,5 @@ v1.0.3:
     - BugFix. Fixed an infinite loop error in the getMetaTemplateRecursive method.
 v1.0.4:
     - BugFix. Fixed template inheritance.
+v1.0.5:
+    - BugFix. Fixed permissions.

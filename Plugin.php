@@ -89,7 +89,7 @@ class Plugin extends PluginBase
                 'url'         => Backend::url('catdesign/seocore/metapages'),
                 'order'       => 500,
                 'keywords'    => 'catdesign.seocore::lang.models.meta_page.search_keywords',
-                'permissions' => ['catdesign.seocore.templates']
+                'permissions' => ['catdesign.seocore.meta_pages']
             ]
         ];
     }
